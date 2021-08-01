@@ -301,7 +301,7 @@ resource "aws_lb" "dev-1" {
   internal     = false
   idle_timeout = 60
   # 削除保護 本番環境での誤削除を避けるため
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   # ALBが所属するサブネット。異なるAZを入れる
   subnets = [
@@ -371,3 +371,11 @@ resource "aws_lb_listener" "http" {
     }
   }
 }
+
+##############################################
+###  Route53
+# ドメイン登録はTerraformで実行できない
+##############################################
+# data "aws_route53_zone" "dev-1" {
+#   name = "example.com"
+# }
